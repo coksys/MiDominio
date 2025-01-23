@@ -1,0 +1,69 @@
+body {
+    background: linear-gradient(to right, #9b9abb, #b2b8c9);
+}
+/* Titulos */
+h2 {
+    color: rgb(31, 43, 212);
+    font-size: 40px;
+}
+
+#infoSelect {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* checkbox */
+.allDiv label input {
+    width: 17px;
+    height: 17px;
+}
+
+/* Sección de datos visibles públicamente */
+
+    /* Botón de configuración */
+#configPublic {
+    font-size: 20px;
+    background-color: rgb(176, 211, 231);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#configPublic:hover {
+    background-color: rgb(190, 215, 220);
+    cursor: pointer; 
+}
+
+#datosPublicos div{
+    color: rgb(31, 43, 212);
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular',
+    'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+#datosPublicos span{
+    color:rgb(69, 82, 94);
+}
+
+.nombres{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+/* botón actualizar */
+.actualizar {
+    background-color: #a2b0be;
+    margin-top: 10px;
+    font-size: 30px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media (min-width: 850px){
+    .nombres {
+        display: flex;
+    }
+}
+
