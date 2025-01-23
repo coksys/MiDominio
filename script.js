@@ -7,7 +7,6 @@ function webConfig() {
   window.location.href = 'configuracion.html';
 }
 
-
 /* Visualización individual de los elementos del perfil */
   const checkboxes = document.querySelectorAll('.toggleDiv');
   
@@ -23,19 +22,11 @@ function webConfig() {
           };
         });
 
-          
-
-
-
         /* Visualización total o ninguna de los elementos del perfil BUTTON*/
 
-
         /* función del botón id=allDiv */
-
         function botonTodo () {
-
         const checkboxes = document.querySelectorAll('.toggleDiv');
-          
         checkboxes.forEach(function(checkbox) {
   
           const targetId = checkbox.getAttribute('data-target');
@@ -44,16 +35,13 @@ function webConfig() {
           /* Visualización total */
             checkbox.checked = true;
             targetElement.style.display = 'block';
-        
           }
-          
         )};
         
         /* función del botón id=noDiv */
         function botonNada () {
 
           const checkboxes = document.querySelectorAll('.toggleDiv');
-            
           checkboxes.forEach(function(checkbox) {
     
             const targetId = checkbox.getAttribute('data-target');
@@ -62,16 +50,13 @@ function webConfig() {
             /* Visualización ninguna */
               checkbox.checked = false;
               targetElement.style.display = 'none';
-          
             }
-            
           )};
 
         /* botón guardar cambios */
         function actualizar() {
           location.reload();
           window.location.href = 'index.html';
-          
         }
         /* const actualizaTodo = document.getElementById("allDiv", actualizar);
         const actualizaNada = document.getElementById("noDiv", actualizar);
