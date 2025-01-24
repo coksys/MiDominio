@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiDominio</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div id="publiSelect">
+        <h2>PERFIL</h2>
+        <p id="infoSelect">Seleccione los elementos que serán visibles en su perfil público:</p>
+        <!-- Checkbuttons para controlar la visibilidad de todos los div -->
+        <section class="allDiv">
+            <label><input type="button" id="allDiv" onclick="botonTodo()">Seleccionar Todo</label><br>
+            <label><input type="button" id="noDiv" onclick="botonNada()">Deseleccionar Todo</label><br><br>
+        </section>
+        <!-- Checkbuttons para controlar la visibilidad de cada div -->
+        <label><input type="checkbox" class="toggleDiv" data-target="foto"> Foto</label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="nombre"> Nombre: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="1apellido"> Apellido 1: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="2apellido"> Apellido 2: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="email"> Email: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="direccion"> Dirección: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="ciudad"> Ciudad: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="provincia"> Provincia: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="pais"> País: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="zona del mundo"> Zona del mundo: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="telefono"> Teléfono: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="aficiones"> Aficiones: </label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="fotos"> Fotos</label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="videos"> Vídeos</label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="documentos"> Documentos</label><br>
+        <label><input type="checkbox" class="toggleDiv" data-target="conversacionPublica"> Conversación pública</label><br>
+        <br>
+    <!--  Botón actualizar -->
+        <button type="button" id="actualizar" onclick="actualizar()">Aplicar cambios</button>
+    </div>
+
+    <!-- Datos personales -->
+    <div id="datosPublicos">
+        <h2>PERFIL</h2>
+        <button id="configPublic">Configurar datos visibles</button>
+        <br><br>
+        <div id="foto"></div>
+        <div class="nombres">
+            <div><span>Nombre: </span></div>
+            <div id="nombre"><span>&nbsp;</span>Eva</div>
+            <div id="1apellido"><span>&nbsp;</span>Beluche</div>
+            <div id="2apellido"><span>&nbsp;</span>Guindos apellidos</div>
+        </div>
+        <div id="email"><span>Email: </span>ebeluche@midominio.es</div>
+        <div id="direccion"><span>Dirección: </span>C/Los cortes, 45 piso 2 pta.4</div>
+        <div id="ciudad"><span>Ciudad: </span>Cornico</div>
+        <!-- provincia o región.
+        En caso de exportar a otros países el programa, en algunos no existe la provincia-->
+        <div id="provincia"><span>Provincia: </span>Provincia o región</div>
+        <div id="pais"><span>País: </span>España</div>
+        <div id="zona del mundo"><span>Zona del mundo: </span>Europa sur oeste</div>
+        <div id="telefono"><span>Teléfono: </span>+34 678888888</div>
+        <div id="aficiones"><span>Aficiones: </span>escultura, guitarra, Juegos cooperativos online</div>
+        <div id="fotos"><span>Fotos: </span></div>
+        <div id="videos"><span>Vídeos: </span></div>
+        <div id="documentos"><span>Documentos: </span></div>
+        <div id="conversacionPublica"><span>Conversacion Pública: </span></div>
+    </div>
+    
+    <!-- Script -->
+    <script src="script.js"></script>   
+</body>
+</html>
