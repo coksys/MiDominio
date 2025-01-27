@@ -112,10 +112,8 @@ function QuitarTituloNombre() {
       nombres.style.display = 'block';
       };
   };
-    
 
-
-// guardamos el estado de cada checkbox
+  // guardamos el estado de cada checkbox
 function saveCheckboxes() {
   const checkboxes = document.querySelectorAll('.toggleDiv');
   let CheckedCollect = [];
