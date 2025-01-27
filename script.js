@@ -1,7 +1,7 @@
 window.onload = function() {
   // Si encontramos el elemento, recuperamos el valor del localStorage
-  const checkedOptions = JSON.parse(localStorage.getItem('checkedCheckboxes'));
-  if (checkedOptions) {
+  const CheckedCollect = JSON.parse(localStorage.getItem('checkedCheckboxes'));
+  if (CheckedCollect) {
     loadCheckboxes();}
   else {
     webConfig();
@@ -11,11 +11,11 @@ window.onload = function() {
   // devolvemos las casillas de verificación a la última configuración antes de cerrar ventana
 function loadCheckboxes() {
    /* Recogemos la información del estado de los ckeckbox almacenada en localStorage */
-   const checkedOptions = JSON.parse(localStorage.getItem('checkedCheckboxes'));
+   const CheckedCollect = JSON.parse(localStorage.getItem('checkedCheckboxes'));
    /* Array de los datos personales*/
    const datosPublicos = document.querySelectorAll('.toggleDiv');
    // activamos o no checkbox según info del localStorage
-   checkedOptions.forEach(function(checkbox, indice) {
+   CheckedCollect.forEach(function(checkbox, indice) {
     if (checkbox=="on") {
       datosPublicos[indice].checked = true;}
     else {
@@ -90,29 +90,48 @@ function actualizar() {
       };
     });
     saveCheckboxes(); // guardamos el estado de cada checkbox
+    // Si no hay nombre ni apellidos el título "Nombre:" no se muestra (por estética).
+    
+    
+    // escondemos el menú de los ckeckbox
     const checkDiv = document.getElementById("publiSelect");
     const datosDiv = document.getElementById("datosPublicos");
     datosDiv.style.display = 'block';
     checkDiv.style.display = 'none';
+    QuitarTituloNombre();
 };
+
+// Si no hay nombre ni apellidos el título "Nombre:" no se muestra (por estética).
+function QuitarTituloNombre() {
+    const CheckedCollect = JSON.parse(localStorage.getItem('checkedCheckboxes'));
+    const nombres = document.getElementById("todoNombre");
+    if (CheckedCollect[1]=="off" && CheckedCollect[2]=="off" && CheckedCollect[3]=="off") {
+      nombres.style.display = 'none';
+    }
+    else {
+      nombres.style.display = 'block';
+      };
+  };
+    
+
 
 // guardamos el estado de cada checkbox
 function saveCheckboxes() {
   const checkboxes = document.querySelectorAll('.toggleDiv');
-  let checkedOptions = [];
+  let CheckedCollect = [];
   checkboxes.forEach(function(checkbox) {
     const targetId = checkbox.getAttribute('data-target');
     const targetElement = document.getElementById(targetId);
-    //añadimos cada valor del array checkedoptions
+    //añadimos cada valor del array CheckedCollect
     if (checkbox.checked) {
     checkbox.value="on";
     }
     else {
     checkbox.value="off";
     };
-     checkedOptions.push(checkbox.value);
+     CheckedCollect.push(checkbox.value);
   });
- localStorage.setItem('checkedCheckboxes', JSON.stringify(checkedOptions));
+ localStorage.setItem('checkedCheckboxes', JSON.stringify(CheckedCollect));
 };
 
 
