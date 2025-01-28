@@ -38,17 +38,17 @@ function webConfig() {
 };
 
 /* Visualización individual de los elementos del perfil */
-  const checkboxes = document.querySelectorAll('.toggleDiv');
-  checkboxes.forEach(function(checkbox) {
-    const targetId = checkbox.getAttribute('data-target');
-    const targetElement = document.getElementById(targetId);
-  /* se visualizan los datos de cada div según esté chequeada la casilla o no */          
-    if (checkbox.checked){
-      targetElement.style.display = 'block';}
-    else {
-      targetElement.style.display = 'none';
-    };
-  });
+const checkboxes = document.querySelectorAll('.toggleDiv');
+checkboxes.forEach(function(checkbox) {
+  const targetId = checkbox.getAttribute('data-target');
+  const targetElement = document.getElementById(targetId);
+/* se visualizan los datos de cada div según esté chequeada la casilla o no */          
+  if (checkbox.checked){
+    targetElement.style.display = 'block';}
+  else {
+    targetElement.style.display = 'none';
+  };
+});
 /* Visualización total o ninguna de los elementos del perfil (botones seleccionar todo/nada) */
 
   /* función del botón id=allDiv seleccionar todo */
@@ -81,7 +81,7 @@ function actualizar() {
     checkboxes.forEach(function(checkbox) {
       const targetId = checkbox.getAttribute('data-target');
       const targetElement = document.getElementById(targetId);
-      /*en el condicional se visualizan los datos de cada div
+      /*se visualizan los datos de cada div
       según esté chequeada la casilla o no */         
       if (checkbox.checked) {
         targetElement.style.display = 'block';}
@@ -89,29 +89,30 @@ function actualizar() {
         targetElement.style.display = 'none';
       };
     });
-    saveCheckboxes(); // guardamos el estado de cada checkbox
-    // Si no hay nombre ni apellidos el título "Nombre:" no se muestra (por estética).
     
+    saveCheckboxes(); // guardamos el estado de cada checkbox
     
     // escondemos el menú de los ckeckbox
     const checkDiv = document.getElementById("publiSelect");
     const datosDiv = document.getElementById("datosPublicos");
     datosDiv.style.display = 'block';
     checkDiv.style.display = 'none';
-    QuitarTituloNombre();
+    
+    QuitarTituloNombre(); // por estética
 };
 
-// Si no hay nombre ni apellidos el título "Nombre:" no se muestra (por estética).
+// Si no hay nombre ni apellidos el título "Nombre:" no se muestra.
 function QuitarTituloNombre() {
     const CheckedCollect = JSON.parse(localStorage.getItem('checkedCheckboxes'));
     const nombres = document.getElementById("todoNombre");
+    //se indexa según orden de los chequeados. Cambiar index en caso de cambiar títulos
     if (CheckedCollect[1]=="off" && CheckedCollect[2]=="off" && CheckedCollect[3]=="off") {
       nombres.style.display = 'none';
     }
     else {
       nombres.style.display = 'block';
-      };
-  };
+    };
+};
 
   // guardamos el estado de cada checkbox
 function saveCheckboxes() {
