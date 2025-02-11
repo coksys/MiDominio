@@ -29,12 +29,24 @@ h2 {
 #configPublic {
     font-size: 20px;
     background-color: rgb(176, 211, 231);
-    padding: 5px;
+    padding: 5px 5px;
     border-radius: 5px;
 }
 
 #configPublic:hover {
     background-color: rgb(190, 215, 220);
+    cursor: pointer; 
+}
+
+#ButtonModificarDatos {
+    font-size: 20px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#ButtonModificarDatos:hover {
+    background-color: rgb(218, 237, 241);
     cursor: pointer; 
 }
 
