@@ -26,7 +26,14 @@ function cambiarDatos() {
     dataCollect.push(formValue.value);
   });
   localStorage.setItem('dataCollect', JSON.stringify(dataCollect));
+  const checkDiv = document.getElementById("publiSelect");
+  const datosDiv = document.getElementById("datosPublicos");
+  const introDiv = document.getElementById("introDatos");
+  introDiv.style.display = 'none';
+  checkDiv.style.display = 'none';
+  datosDiv.style.display = 'block';
 }
+
 // devolvemos las casillas de verificación a la última configuración antes de cerrar ventana
 function loadCheckboxes() {
   /* Recogemos la información del estado de los ckeckbox almacenada en localStorage */
@@ -56,6 +63,20 @@ function webConfig() {
   //const introDiv = document.getElementById("introDatos");
   //introDiv.style.display = 'block';
   checkDiv.style.display = 'block';
+  datosDiv.style.display = 'none';
+};
+
+/* Botón modificar datos */
+const modifPublic = document.getElementById("ButtonModificarDatos");
+const modifSave = modifPublic.addEventListener('click', modificarDatos);
+
+// activa menú "configurar datos visibles"
+function modificarDatos() {
+  const checkDiv = document.getElementById("publiSelect");
+  const datosDiv = document.getElementById("datosPublicos");
+  const introDiv = document.getElementById("introDatos");
+  introDiv.style.display = 'block';
+  checkDiv.style.display = 'none';
   datosDiv.style.display = 'none';
 };
 
@@ -121,8 +142,11 @@ function actualizar() {
   // escondemos el menú de los ckeckbox
   const checkDiv = document.getElementById("publiSelect");
   const datosDiv = document.getElementById("datosPublicos");
+  const introDiv = document.getElementById("introDatos");
   datosDiv.style.display = 'block';
   checkDiv.style.display = 'none';
+  introDiv.style.display = 'none';
+
 
   QuitarTituloNombre(); // por estética
 };
