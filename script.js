@@ -1,146 +1,172 @@
-window.onload = function() {
+window.onload = function () {
   // Si encontramos el elemento, recuperamos el valor del localStorage
   const CheckedCollect = JSON.parse(localStorage.getItem('checkedCheckboxes'));
   if (CheckedCollect) {
-    loadCheckboxes();}
+    loadCheckboxes();
+  }
   else {
     webConfig();
   }
 };
 
-  // devolvemos las casillas de verificación a la última configuración antes de cerrar ventana
+function cambiarDatos() {
+  const inputForm = document.querySelectorAll('[data-form="introDatosForm"]');
+  console.log("inputForm: " + inputForm);
+  let dataCollect = [];
+  inputForm.forEach(function (formValue) {
+    console.log(formValue.value);
+    const targetId = formValue.getAttribute('name');
+    const targetElement = document.getElementById(targetId);
+    const contenido = targetElement.innerHTML;
+    const partes = contenido.split('</span>');
+    if (partes.length > 1) {
+      const textoDespuesDelSpan = partes[1];
+      targetElement.innerHTML = partes[0] + '</span>' + formValue.value;
+    }
+    dataCollect.push(formValue.value);
+  });
+  localStorage.setItem('dataCollect', JSON.stringify(dataCollect));
+}
+// devolvemos las casillas de verificación a la última configuración antes de cerrar ventana
 function loadCheckboxes() {
-   /* Recogemos la información del estado de los ckeckbox almacenada en localStorage */
-   const CheckedCollect = JSON.parse(localStorage.getItem('checkedCheckboxes'));
-   /* Array de los datos personales*/
-   const datosPublicos = document.querySelectorAll('.toggleDiv');
-   // activamos o no checkbox según info del localStorage
-   CheckedCollect.forEach(function(checkbox, indice) {
-    if (checkbox=="on") {
-      datosPublicos[indice].checked = true;}
+  /* Recogemos la información del estado de los ckeckbox almacenada en localStorage */
+  const CheckedCollect = JSON.parse(localStorage.getItem('checkedCheckboxes'));
+  /* Array de los datos personales*/
+  const datosPublicos = document.querySelectorAll('.toggleDiv');
+  // activamos o no checkbox según info del localStorage
+  CheckedCollect.forEach(function (checkbox, indice) {
+    if (checkbox == "on") {
+      datosPublicos[indice].checked = true;
+    }
     else {
       datosPublicos[indice].checked = false;
     };
-  actualizar();
+    actualizar();
   });
 };
 
 /* Botón configuración del perfil público */
-  const configPublic = document.getElementById("configPublic");
-  const cambiaConfig = configPublic.addEventListener('click', webConfig);
+const configPublic = document.getElementById("configPublic");
+const cambiaConfig = configPublic.addEventListener('click', webConfig);
 
 // activa menú "configurar datos visibles"
 function webConfig() {
   const checkDiv = document.getElementById("publiSelect");
   const datosDiv = document.getElementById("datosPublicos");
+  //const introDiv = document.getElementById("introDatos");
+  //introDiv.style.display = 'block';
   checkDiv.style.display = 'block';
   datosDiv.style.display = 'none';
 };
 
 /* Visualización individual de los elementos del perfil */
 const checkboxes = document.querySelectorAll('.toggleDiv');
-checkboxes.forEach(function(checkbox) {
+checkboxes.forEach(function (checkbox) {
   const targetId = checkbox.getAttribute('data-target');
   const targetElement = document.getElementById(targetId);
-/* se visualizan los datos de cada div según esté chequeada la casilla o no */          
-  if (checkbox.checked){
-    targetElement.style.display = 'block';}
+  /* se visualizan los datos de cada div según esté chequeada la casilla o no */
+  if (checkbox.checked) {
+    targetElement.style.display = 'block';
+  }
   else {
     targetElement.style.display = 'none';
   };
 });
 /* Visualización total o ninguna de los elementos del perfil (botones seleccionar todo/nada) */
 
-  /* función del botón id=allDiv seleccionar todo */
-function botonTodo () {
-    const checkboxes = document.querySelectorAll('.toggleDiv');
-    checkboxes.forEach(function(checkbox) {
-      const targetId = checkbox.getAttribute('data-target');
-      const targetElement = document.getElementById(targetId);
-      /* Visualización total */
-      checkbox.checked = true;
+/* función del botón id=allDiv seleccionar todo */
+function botonTodo() {
+  const checkboxes = document.querySelectorAll('.toggleDiv');
+  checkboxes.forEach(function (checkbox) {
+    const targetId = checkbox.getAttribute('data-target');
+    const targetElement = document.getElementById(targetId);
+    /* Visualización total */
+    checkbox.checked = true;
+    targetElement.style.display = 'block';
+  }
+  )
+};
+
+/* función del botón id=noDiv deseleccionar todo */
+function botonNada() {
+  const checkboxes = document.querySelectorAll('.toggleDiv');
+  checkboxes.forEach(function (checkbox) {
+    const targetId = checkbox.getAttribute('data-target');
+    const targetElement = document.getElementById(targetId);
+    /* Visualización ninguna */
+    checkbox.checked = false;
+    targetElement.style.display = 'none';
+  }
+  )
+};
+
+/* botón guardar cambios */
+function actualizar() {
+  const checkboxes = document.querySelectorAll('.toggleDiv');
+  checkboxes.forEach(function (checkbox) {
+    const targetId = checkbox.getAttribute('data-target');
+    const targetElement = document.getElementById(targetId);
+    /*se visualizan los datos de cada div
+    según esté chequeada la casilla o no */
+    if (checkbox.checked) {
       targetElement.style.display = 'block';
     }
-    )};
-        
-  /* función del botón id=noDiv deseleccionar todo */
-function botonNada () {
-    const checkboxes = document.querySelectorAll('.toggleDiv');
-    checkboxes.forEach(function(checkbox) {
-      const targetId = checkbox.getAttribute('data-target');
-      const targetElement = document.getElementById(targetId);
-      /* Visualización ninguna */
-        checkbox.checked = false;
-        targetElement.style.display = 'none';
-    }
-)};
+    else {
+      targetElement.style.display = 'none';
+    };
+  });
 
-  /* botón guardar cambios */
-function actualizar() {
-    const checkboxes = document.querySelectorAll('.toggleDiv');
-    checkboxes.forEach(function(checkbox) {
-      const targetId = checkbox.getAttribute('data-target');
-      const targetElement = document.getElementById(targetId);
-      /*se visualizan los datos de cada div
-      según esté chequeada la casilla o no */         
-      if (checkbox.checked) {
-        targetElement.style.display = 'block';}
-      else {
-        targetElement.style.display = 'none';
-      };
-    });
-    
-    saveCheckboxes(); // guardamos el estado de cada checkbox
-    
-    // escondemos el menú de los ckeckbox
-    const checkDiv = document.getElementById("publiSelect");
-    const datosDiv = document.getElementById("datosPublicos");
-    datosDiv.style.display = 'block';
-    checkDiv.style.display = 'none';
-    
-    QuitarTituloNombre(); // por estética
+  saveCheckboxes(); // guardamos el estado de cada checkbox
+
+  // escondemos el menú de los ckeckbox
+  const checkDiv = document.getElementById("publiSelect");
+  const datosDiv = document.getElementById("datosPublicos");
+  datosDiv.style.display = 'block';
+  checkDiv.style.display = 'none';
+
+  QuitarTituloNombre(); // por estética
 };
 
 // Si no hay nombre ni apellidos el título "Nombre:" no se muestra.
 function QuitarTituloNombre() {
-    const CheckedCollect = JSON.parse(localStorage.getItem('checkedCheckboxes'));
-    const nombres = document.getElementById("todoNombre");
-    //se indexa según orden de los chequeados. Cambiar index en caso de cambiar títulos
-    if (CheckedCollect[1]=="off" && CheckedCollect[2]=="off" && CheckedCollect[3]=="off") {
-      nombres.style.display = 'none';
-    }
-    else {
-      nombres.style.display = 'block';
-    };
+  const CheckedCollect = JSON.parse(localStorage.getItem('checkedCheckboxes'));
+  const nombres = document.getElementById("todoNombre");
+  //se indexa según orden de los chequeados. Cambiar index en caso de cambiar títulos
+  if (CheckedCollect[1] == "off" && CheckedCollect[2] == "off" && CheckedCollect[3] == "off") {
+    nombres.style.display = 'none';
+  }
+  else {
+    nombres.style.display = 'block';
+  };
 };
 
-  // guardamos el estado de cada checkbox
+// guardamos el estado de cada checkbox
 function saveCheckboxes() {
   const checkboxes = document.querySelectorAll('.toggleDiv');
   let CheckedCollect = [];
-  checkboxes.forEach(function(checkbox) {
+  checkboxes.forEach(function (checkbox) {
     const targetId = checkbox.getAttribute('data-target');
     const targetElement = document.getElementById(targetId);
     //añadimos cada valor del array CheckedCollect
     if (checkbox.checked) {
-    checkbox.value="on";
+      checkbox.value = "on";
     }
     else {
-    checkbox.value="off";
+      checkbox.value = "off";
     };
-     CheckedCollect.push(checkbox.value);
+    CheckedCollect.push(checkbox.value);
   });
- localStorage.setItem('checkedCheckboxes', JSON.stringify(CheckedCollect));
+  localStorage.setItem('checkedCheckboxes', JSON.stringify(CheckedCollect));
 };
 
 
-        
-        
 
 
 
-        
 
-  
 
-     
+
+
+
+
+
