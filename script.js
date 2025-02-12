@@ -1,24 +1,52 @@
 window.onload = function () {
   // Si encontramos el elemento, recuperamos el valor del localStorage
   const CheckedCollect = JSON.parse(localStorage.getItem('checkedCheckboxes'));
-  if (CheckedCollect) {
+  const inputForm = JSON.parse(localStorage.getItem('dataCollect'));
+  if (CheckedCollect || inputForm) {
     loadCheckboxes();
+    cargarDatos();
   }
   else {
-    webConfig();
+    cambiarDatos();
   }
 };
 
+function cargarDatos() {
+  const formInput = JSON.parse(localStorage.getItem('dataCollect'));
+  const introForm = document.querySelectorAll('[data-form="introDatosForm"]');
+  console.log("inputForm: " + introForm);
+  introForm.forEach(function (formValue, indice) {
+    console.log(formValue.value);
+    formValue.value = formInput[indice];
+    const targetId = formValue.getAttribute('name');
+    const targetElement = document.getElementById(targetId);
+    const contenido = targetElement.innerHTML;
+    const partes = contenido.split('</span>');
+    if (partes.length > 1) {
+      const textoDespuesDelSpan = partes[1];
+      targetElement.innerHTML = partes[0] + '</span>' + formInput[indice];
+    }
+
+  });
+}
+
 function cambiarDatos() {
-  const inputForm = document.querySelectorAll('[data-form="introDatosForm"]');
-  console.log("inputForm: " + inputForm);
+  const formInput = JSON.parse(localStorage.getItem('dataCollect'));
+  const introForm = document.querySelectorAll('[data-form="introDatosForm"]');
   let dataCollect = [];
-  inputForm.forEach(function (formValue) {
+  
+  console.log("inputForm: " + introForm);
+
+  introForm.forEach(function (formValue, indice) {
+    valorCampo = formInput[indice];
+    console.log(valorCampo);
     console.log(formValue.value);
     const targetId = formValue.getAttribute('name');
     const targetElement = document.getElementById(targetId);
     const contenido = targetElement.innerHTML;
     const partes = contenido.split('</span>');
+    console.log(dataCollect);
+
     if (partes.length > 1) {
       const textoDespuesDelSpan = partes[1];
       targetElement.innerHTML = partes[0] + '</span>' + formValue.value;
