@@ -14,9 +14,7 @@ window.onload = function () {
 function cargarDatos() {
   const formInput = JSON.parse(localStorage.getItem('dataCollect'));
   const introForm = document.querySelectorAll('[data-form="introDatosForm"]');
-  console.log("inputForm: " + introForm);
   introForm.forEach(function (formValue, indice) {
-    console.log(formValue.value);
     formValue.value = formInput[indice];
     const targetId = formValue.getAttribute('name');
     const targetElement = document.getElementById(targetId);
@@ -34,18 +32,11 @@ function cambiarDatos() {
   const formInput = JSON.parse(localStorage.getItem('dataCollect'));
   const introForm = document.querySelectorAll('[data-form="introDatosForm"]');
   let dataCollect = [];
-  
-  console.log("inputForm: " + introForm);
-
   introForm.forEach(function (formValue, indice) {
-    valorCampo = formInput[indice];
-    console.log(valorCampo);
-    console.log(formValue.value);
     const targetId = formValue.getAttribute('name');
     const targetElement = document.getElementById(targetId);
     const contenido = targetElement.innerHTML;
     const partes = contenido.split('</span>');
-    console.log(dataCollect);
 
     if (partes.length > 1) {
       const textoDespuesDelSpan = partes[1];
