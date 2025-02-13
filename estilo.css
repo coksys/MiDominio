@@ -5,6 +5,7 @@ body {
 /* Titulos */
 h1 {
     text-align: center;
+    color: rgb(31, 43, 212);
 }
 
 h2 {
@@ -25,7 +26,7 @@ h2 {
 
 /* Sección de datos visibles públicamente */
 
-    /* Botón de configuración */
+    /* Botón de configuración de los checkboxes*/
 #configPublic {
     font-size: 20px;
     background-color: rgb(176, 211, 231);
@@ -38,6 +39,7 @@ h2 {
     cursor: pointer; 
 }
 
+    /* Botón de modificación */
 #ButtonModificarDatos {
     font-size: 20px;
     background-color: white;
@@ -48,6 +50,11 @@ h2 {
 #ButtonModificarDatos:hover {
     background-color: rgb(218, 237, 241);
     cursor: pointer; 
+}
+
+    /* Botón de confirmación de modificación */
+#introDatosButton {
+    background-color: rgb(222, 240, 223);
 }
 
 #datosPublicos div{

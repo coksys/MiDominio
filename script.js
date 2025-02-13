@@ -7,8 +7,43 @@ window.onload = function () {
     cargarDatos();
   }
   else {
-    cambiarDatos();
+    cargaInicial();
+    tituloEjemplo();
   }
+};
+
+function tituloEjemplo() {
+  const tituloDiv = document.getElementById("tituloPerfil");
+  const tituloOriginal = tituloDiv.innerHTML; // Guarda el título original
+  tituloDiv.innerHTML = '<h2 id="tituloPerfil">PERFIL <span style="color: grey; font-size: 30px;">(de ejemplo)</span></h2>';
+  const botonCheckboxes = document.getElementById("actualizar");
+  const botonSaveCambios = document.getElementById("introDatosButton");
+  // Escuchadores de eventos para los botones
+  botonCheckboxes.addEventListener("click", function() {
+    tituloDiv.innerHTML = tituloOriginal; // Restaura el título original
+  });
+  botonSaveCambios.addEventListener("click", function() {
+    tituloDiv.innerHTML = tituloOriginal; // Restaura el título original
+  });
+}
+
+function cargaInicial(){
+  const checkDiv = document.getElementById("publiSelect");
+  const datosDiv = document.getElementById("datosPublicos");
+  const introDiv = document.getElementById("introDatos");
+  checkboxes.forEach(function (checkbox) {
+    const targetId = checkbox.getAttribute('data-target');
+    const targetElement = document.getElementById(targetId);
+    /* Visualización total */
+    checkbox.checked = true;
+    targetElement.style.display = 'block';
+  }
+  );
+  introDiv.style.display = 'none';
+  checkDiv.style.display = 'none';
+  datosDiv.style.display = 'block';
+  
+  
 };
 
 function cargarDatos() {
@@ -23,7 +58,7 @@ function cargarDatos() {
     if (partes.length > 1) {
       const textoDespuesDelSpan = partes[1];
       targetElement.innerHTML = partes[0] + '</span>' + formInput[indice];
-    }
+    };
 
   });
 }

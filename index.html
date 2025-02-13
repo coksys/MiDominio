@@ -36,16 +36,19 @@
                 id="telefonoForm" name="telefono" data-form="introDatosForm">
             <label class="col-md-2" for="aficionesForm">Aficiones:</label><input class="col-md-10" type="text"
                 id="aficionesForm" name="aficiones" data-form="introDatosForm">
-            <label for="fotosForm">Fotos:</label><input class="col-md-10" type="file" id="fotosForm" name="fotos" data-form="introDatosForm">
+            
+            <!--multimedia-->
+            <!--<label for="fotosForm">Fotos:</label><input class="col-md-10" type="file" id="fotosForm" name="fotos" data-form="introDatosForm">
             <label for="videosForm">Vídeos:</label><input class="col-md-10" type="file" id="videosForm" name="videos" data-form="introDatosForm">
             <label for="documentosForm">Documentos:</label><input class="col-md-10" type="file" id="documentosForm"
                 name="documentos" data-form="introDatosForm">
             <label for="enlacesForm">Enlaces:</label><input class="col-md-10" type="file" id="enlacesForm"
                 name="enlaces" data-form="introDatosForm">
             <label for="conversacionPublicaForm">Conversación pública:</label><input class="col-md-10"
-                type="text" id="conversacionPublicaForm" name="conversacionPublica" data-form="introDatosForm">
-            <!--Mostrar los datos-->
-            <button type="button" onclick="cambiarDatos()">Guardar cambios</button>
+                type="text" id="conversacionPublicaForm" name="conversacionPublica" data-form="introDatosForm">-->
+            
+                <!--Aplicar cambio de datos personales-->
+                <label class="col-md-5" for="introDatosButton"></label><button type="button" class="col-md-4" id="introDatosButton" onclick="cambiarDatos()">Guardar cambios</button>
         </form>
     </div>
 
@@ -81,13 +84,13 @@
         <label><input type="checkbox" class="toggleDiv" data-target="enlaces"> Enlaces</label><br>
         <label><input type="checkbox" class="toggleDiv" data-target="conversacionPublica"> Conversación pública</label><br>
         <br>
-    <!--  Botón actualizar -->
+    <!--  Botón actualizar de los checkbox-->
         <button type="button" id="actualizar" onclick="actualizar()">Aplicar cambios</button>
     </div>
 
     <!-- Datos personales -->
     <div id="datosPublicos">
-        <h2>PERFIL</h2>
+        <h2 id="tituloPerfil">PERFIL</h2>
         <button id="ButtonModificarDatos">Modificar datos</button>
         <button id="configPublic">Configurar datos visibles</button>
         <br><br>
